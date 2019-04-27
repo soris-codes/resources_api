@@ -15,7 +15,7 @@ RUN mkdir /static
 RUN apt-get update \
     && apt-get install -y libpq-dev gcc \
     && rm -rf /var/lib/apt/lists/* \
-    && apt-get purge -y --auto-remove gcc \
+    # && apt-get purge -y --auto-remove gcc \
     && pip install --upgrade pip
 
 RUN pip install -r requirements.txt
@@ -24,4 +24,4 @@ COPY . /src
 
 EXPOSE 8000
 
-CMD ["python", "run.py"]
+CMD [ "uwsgi", "--ini", "app.ini" ]

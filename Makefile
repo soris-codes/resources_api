@@ -32,7 +32,8 @@ fresh-restart: minty-fresh test setup run
 
 .PHONY: run
 run: build
-	${DOCKER_COMPOSE} run -p 8000:8000 ${RESOURCES_CONTAINER} ${FLASK} run -p 8000 -h 0.0.0.0
+	# ${DOCKER_COMPOSE} run -p 8000:8000 ${RESOURCES_CONTAINER} ${FLASK} run -p 8000 -h 0.0.0.0
+	${DOCKER_COMPOSE} run -p 8000:8000 ${RESOURCES_CONTAINER} uwsgi --ini app.ini
 
 .PHONY: bg
 bg:
